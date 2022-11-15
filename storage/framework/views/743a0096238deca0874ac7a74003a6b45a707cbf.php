@@ -31,18 +31,18 @@
                             <input
                                 class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-4 pl-4 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                                 placeholder="洗濯物をする..." type="text" name="task_name" />
-                                <?php $__errorArgs = ['task_name'];
+                            <?php $__errorArgs = ['task_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <div class="mt-3">
-                                        <p class="text-red-500">
-                                            <?php echo e($message); ?>
+                                <div class="mt-3">
+                                    <p class="text-red-500">
+                                        <?php echo e($message); ?>
 
-                                        </p>
-                                    </div>
-                                <?php unset($message);
+                                    </p>
+                                </div>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -55,7 +55,7 @@ unset($__errorArgs, $__bag); ?>
 
                 </from>
 
-                
+
                 <?php if($tasks->isNotEmpty()): ?>
                     <div class="max-w-7xl mx-auto mt-20">
                         <div class="inline-block min-w-full py-2 align-middle">
@@ -89,6 +89,9 @@ unset($__errorArgs, $__bag); ?>
                                                                 role="menuitem" tabindex="-1">
                                                                 <?php echo csrf_field(); ?>
                                                                 <?php echo method_field('PUT'); ?>
+
+                                                                <input type="hidden" name="status" value="<?php echo e($item->status); ?>">
+
                                                                 <button type="submit"
                                                                     class="bg-emerald-700 py-4 w-20 text-white md:hover:bg-emerald-800 transition-colors">完了</button>
                                                             </form>
@@ -98,7 +101,8 @@ unset($__errorArgs, $__bag); ?>
                                                                 class="inline-block text-center py-4 w-20 underline underline-offset-2 text-sky-600 md:hover:bg-sky-100 transition-colors">編集</a>
                                                         </div>
                                                         <div>
-                                                            <form action="/tasks/<?php echo e($item->id); ?>" method="post"
+                                                            <form onsubmit="return deleteTask();"
+                                                                action="/tasks/<?php echo e($item->id); ?>" method="post"
                                                                 class="inline-block text-gray-500 font-medium"
                                                                 role="menuitem" tabindex="-1">
                                                                 <?php echo csrf_field(); ?>
@@ -128,6 +132,15 @@ unset($__errorArgs, $__bag); ?>
             </div>
         </diV>
     </footer>
+    <script>
+        function deleteTask() {
+            if(confirm('本当に削除しますか？')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html><?php /**PATH C:\Users\CRE\Documents\TODO-app-bk\resources\views/tasks/index.blade.php ENDPATH**/ ?>
