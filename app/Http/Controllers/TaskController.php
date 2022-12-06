@@ -38,7 +38,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        
         $rules = [
             'task_name' => 'required|max:100',
         ];
@@ -60,6 +59,7 @@ class TaskController extends Controller
 
         //リダイレクト
         return redirect('/tasks');
+
     }
 
     /**

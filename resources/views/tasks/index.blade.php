@@ -23,7 +23,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="py-[100-px]">
                 <p class="text-2xl font-bold text-conter">今日は何する？</p>
-                <from action="/tasks" method="post" class="mt-10">
+                <form action="/tasks" method="post" class="mt-10">
                     @csrf
 
                     <div class="flex Flex-col items-center">
@@ -45,7 +45,7 @@
                         </button>
                     </div>
 
-                </from>
+                </form>
 
 
                 @if ($tasks->isNotEmpty())
@@ -116,13 +116,13 @@
             </div>
         </div>
     </main>
-    <footer class="bg-slate-800">
+    <!-- <footer class="bg-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="py-4 text-center">
                 <p class-"text-white text-sm">Todoアプリ</p>
             </div>
         </diV>
-    </footer>
+    </footer> -->
     <script>
         function deleteTask() {
             if(confirm('本当に削除しますか？')) {
